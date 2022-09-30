@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>Basic WebApp Task</title>
+</head>
+
+<body>
+  <div class="container align-content-center">
+    <h1 class="align-content-center">Basic WebApp Task </h1>
+  </div>
+
+  <div class="container m-4">
+    <div class="row">
+      <div class="col">
+
+        <div class="container-fluid">
+          <button type="button" onClick="getData('left','http://demo7650819.mockable.io/')" class="btn btn-primary m-2">Left</button>
+          <ul class="list-group m-2" id="left">
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="container-fluid">
+          <button type="button" onClick="getData('middle','http://demo9975535.mockable.io/')" class="btn btn-secondary m-2">Middle</button>
+          <ul class="list-group m-2" id="middle">
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="container-fluid">
+          <button type="button" onClick="getData('right','http://demo6407227.mockable.io/')" class="btn btn-primary m-2">Right</button>
+          <ul class="list-group m-2" id="right">
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    async function getData(id,url) {
+      const res = await fetch(url);
+      const data = await res.json();
+      showData(id, data);
+    }
+
+    function showData(id, data) {
+      let l = ``;
+      for (let m of data) {
+        l += `<li class="list-group-item">${m.msg}</li>`;
+      }
+      document.getElementById(id).innerHTML = l;
+    }
+    
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

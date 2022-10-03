@@ -1,0 +1,40 @@
+.BookConatiner{
+  background-color:#ddd6d6;
+  border:none;
+  border-radius:12px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-left:50%;
+ 
+
+}
+.bookImg{
+    flex: 1;
+    align-items: center;
+    padding: 6px;
+    background-color: rgb(247, 247, 247);
+    border:none;
+    border-radius: 12px;
+    width: 70%;
+    margin: 10px;
+    height: 420px;
+    
+    
+}
+.bookImg img{
+    max-height: 400px;
+    width:auto;
+    border-radius: 12px;
+    background-color: transparent;
+
+}
+.bookInfo{
+    flex:1;
+    margin:100px 40px;
+    height:auto;
+    width:350px;
+}
+.bookInfo h5{
+    text-align:center;
+}

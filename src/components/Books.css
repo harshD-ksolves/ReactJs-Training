@@ -1,0 +1,9 @@
+.cardCss{
+    width: 19rem;
+    height:400px;
+    padding:3px;
+    cursor:pointer;
+}
+.cardCss img{
+    height: 250px;
+}

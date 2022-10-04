@@ -32,7 +32,7 @@ export class Main extends Component {
         });
     }
     else{
-      const langs=this.state.selLang.filter((l)=> l != lang );
+      const langs=this.state.selLang.filter((l)=> l !== lang );
       this.setState({
         selLang:langs
       });
@@ -44,7 +44,7 @@ console.log(this.state.books.language);
 
     const Book=()=>{
       let {id}=useParams();
-      return <Bookdeatil book={this.state.books.filter((book)=> book.id===id)[0]}/>;
+      return <Bookdeatil book={this.state.books.filter((book)=> book.id == id)[0]}/>;
     }
 
     const BookList=()=>{
@@ -62,12 +62,9 @@ console.log(this.state.books.language);
         <Suspense fallback={<div>Loading.....</div>}>
           <Routes>
               <Route path="/" element={<BookList/>} />
-              <Route path="/:id" element={<Book/>} />
+              <Route exact path="/:id" element={<Book/>} />
           </Routes>
         </Suspense>
-        
-        
-        
       </div>
 
     )

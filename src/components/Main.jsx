@@ -2,7 +2,7 @@
 import React, { Component,Suspense,lazy } from 'react';
 
 import Navbar from './Navbar';
-import {BOOKS} from '../data';
+import {BOOKS,langs} from '../data';
 import {Routes,Route,useParams} from "react-router-dom";
 
 const Books=lazy(()=>import('./Books'));
@@ -15,30 +15,53 @@ export class Main extends Component {
     super(props);
     this.state = {
       books:[],
-      selected:""
+      selLang:[],
     };
+    this.onChange=this.onChange.bind(this);
   }
 
   componentDidMount() {
-    console.log("Component mounted");
     this.setState({books:BOOKS});
-    console.log(this.state.books)
+    
   }
 
+  onChange(lang){
+    if(!this.state.selLang.includes(lang)){
+        this.setState({
+          selLang:this.state.selLang.concat(lang)
+        });
+    }
+    else{
+      const langs=this.state.selLang.filter((l)=> l != lang );
+      this.setState({
+        selLang:langs
+      });
+    }
+  }
   
   render() {
+console.log(this.state.books.language);
+
     const Book=()=>{
       let {id}=useParams();
-      return <Bookdeatil book={this.state.books.filter((book)=> book.id==id)[0]}/>;
+      return <Bookdeatil book={this.state.books.filter((book)=> book.id===id)[0]}/>;
     }
 
+    const BookList=()=>{
+      if(this.state.selLang.length>0){
+       return <Books books={this.state.books.filter((book)=>this.state.selLang.includes(book.language))}/>;
+      }
+      else{
+        return <Books books={this.state.books}/>;
+      }
+    }
 
     return (
       <div>
-        <Navbar />
+        <Navbar langs={langs} onChange={this.onChange}/>
         <Suspense fallback={<div>Loading.....</div>}>
           <Routes>
-              <Route path="/" element={<Books books={this.state.books}/>} />
+              <Route path="/" element={<BookList/>} />
               <Route path="/:id" element={<Book/>} />
           </Routes>
         </Suspense>

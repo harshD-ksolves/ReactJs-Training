@@ -3,7 +3,7 @@ import './Books.css';
 import { useNavigate } from 'react-router-dom';
 
 
-const Book=(({book})=>{
+const Book=({book})=>{
       let navigate=useNavigate();  
     return (<div className="col m-3" key={book.id}>
              <div className="card cardCss" onClick={()=>navigate(`/${book.id}`)}>
@@ -16,12 +16,11 @@ const Book=(({book})=>{
                  </div>
              </div>
      </div>);
-});
+};
 
 
 const Books = (props) => {
 
-    console.log(props);
     
 
     return (

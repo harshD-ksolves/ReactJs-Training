@@ -1,10 +1,13 @@
 
-import React, { Component } from 'react'
-import Books from './Books';
+import React, { Component,Suspense,lazy } from 'react';
+
 import Navbar from './Navbar';
 import {BOOKS} from '../data';
-import Bookdeatil from './Bookdeatil';
 import {Routes,Route,useParams} from "react-router-dom";
+
+const Books=lazy(()=>import('./Books'));
+const Bookdeatil = lazy(()=> import('./Bookdeatil'));
+
 
 export class Main extends Component {
 
@@ -33,10 +36,13 @@ export class Main extends Component {
     return (
       <div>
         <Navbar />
-        <Routes>
-            <Route path="/" element={<Books books={this.state.books}/>} />
-            <Route path="/:id" element={<Book/>} />
-        </Routes>
+        <Suspense fallback={<div>Loading.....</div>}>
+          <Routes>
+              <Route path="/" element={<Books books={this.state.books}/>} />
+              <Route path="/:id" element={<Book/>} />
+          </Routes>
+        </Suspense>
+        
         
         
       </div>

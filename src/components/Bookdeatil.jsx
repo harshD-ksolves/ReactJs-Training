@@ -1,13 +1,13 @@
 import React from 'react'
 import './Bookdetail.css';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
-const Bookdeatil = ({book}) => {
+const Bookdeatil = ({ book }) => {
 
-    let nav=useNavigate();
-    
+    let nav = useNavigate();
+
     return (
         <div className="container BookConatiner m-4">
             <div className="row">
@@ -25,27 +25,22 @@ const Bookdeatil = ({book}) => {
                                     <strong>Author</strong>: {book.authors}
                                 </p>
                                 <p className="card-text">
-                                   <strong> Publisher</strong>: {book.publisher}
+                                    <strong> Publisher</strong>: {book.publisher}
                                 </p>
                                 <p className="card-text">
                                     <strong>Published</strong>: {book.published}
                                 </p>
                                 <p className="card-text">
-                                   <strong>Average Rating</strong>: {book.avg_rating}
+                                    <strong>Average Rating</strong>: {book.avg_rating}
                                 </p>
                                 <p className="card-text ">
-                                    <strong>Price</strong>: <span className="fs-3"> {book.price}</span> 
+                                    <strong>Price</strong>: <span className="fs-3"> {book.price}</span>
                                 </p>
                             </div>
-
-
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
         </div>
     )
 }

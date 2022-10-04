@@ -1,0 +1,60 @@
+.FormContainer{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(255, 255, 255, 0.5),
+            rgba(255, 255, 255, 0.5));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+}
+
+.Wrapper {
+    height: 100%;
+    margin-top:20px;
+    background-color: white;
+    width: 25%;
+    padding: 20px;
+    overflow: auto;
+    border-radius:12px;
+}
+
+.title{
+    font-size: 24px;
+    font-weight: 300;
+    position: relative;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+
+
+
+.input {
+    flex: 1;
+    min-width: 40%;
+    padding: 5px;
+}
+
+
+
+.submitButton {
+    width: 40%;
+    border: none;
+    padding: 15px 20px;
+    background-color: teal;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+
+.span {
+    color: red;
+}
+

@@ -13,7 +13,7 @@ const Bookdeatil = ({ book }) => {
             <div className="row">
                 <div className="col bookImg">
                     <div className="card" >
-                        <img src={book.img} className="card-img-top img-fluid" alt="new" />
+                        <img src={book.img} loading="lazy" className="card-img-top img-fluid" alt="new" />
                     </div>
                 </div>
                 <div className="col">
@@ -34,7 +34,7 @@ const Bookdeatil = ({ book }) => {
                                     <strong>Average Rating</strong>: {book.avg_rating}
                                 </p>
                                 <p className="card-text ">
-                                    <strong>Price</strong>: <span className="fs-3"> {book.price}</span>
+                                    <strong>Price</strong>: <span className="fs-3">${book.price}</span>
                                 </p>
                             </div>
                         </div>

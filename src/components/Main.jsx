@@ -1,75 +1,67 @@
 
-import React, { Component,Suspense,lazy } from 'react';
+import React, { Component, Suspense, lazy, useState, useEffect } from 'react';
 
 import Navbar from './Navbar';
-import {BOOKS,langs} from '../data';
-import {Routes,Route,useParams} from "react-router-dom";
+import { BOOKS, langs } from '../data';
+import { Routes, Route, useParams } from "react-router-dom";
 
-const Books=lazy(()=>import('./Books'));
-const Bookdeatil = lazy(()=> import('./Bookdeatil'));
+const Books = lazy(() => import('./Books'));
+const Bookdeatil = lazy(() => import('./Bookdeatil'));
+const AddBook =lazy(()=>import('./AddBook'));
 
+export const Main = () => {
 
-export class Main extends Component {
+  const [books, setBooks ] = useState([]);
+  const [selLang, setSelLang ] = useState([]);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      books:[],
-      selLang:[],
-    };
-    this.onChange=this.onChange.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({books:BOOKS});
-    
-  }
-
-  onChange(lang){
-    if(!this.state.selLang.includes(lang)){
-        this.setState({
-          selLang:this.state.selLang.concat(lang)
-        });
+  const onChange = (lang) => {
+    if (!selLang.includes(lang)) {
+      setSelLang((langs)=>langs.concat(lang));
+      
     }
-    else{
-      const langs=this.state.selLang.filter((l)=> l !== lang );
-      this.setState({
-        selLang:langs
-      });
+    else {
+      const langs = selLang.filter((l) => l !== lang);
+      setSelLang(langs);
     }
   }
-  
-  render() {
-console.log(this.state.books.language);
-
-    const Book=()=>{
-      let {id}=useParams();
-      return <Bookdeatil book={this.state.books.filter((book)=> book.id == id)[0]}/>;
-    }
-
-    const BookList=()=>{
-      if(this.state.selLang.length>0){
-       return <Books books={this.state.books.filter((book)=>this.state.selLang.includes(book.language))}/>;
-      }
-      else{
-        return <Books books={this.state.books}/>;
-      }
-    }
-
-    return (
-      <div>
-        <Navbar langs={langs} onChange={this.onChange}/>
-        <Suspense fallback={<div>Loading.....</div>}>
-          <Routes>
-              <Route path="/" element={<BookList/>} />
-              <Route exact path="/:id" element={<Book/>} />
-          </Routes>
-        </Suspense>
-      </div>
-
-    )
+  const addBook=(book)=>{
+    book.id=books.length;
+    setBooks((prev)=>prev.push(book));
   }
+
+  useEffect(()=>{
+    setBooks(BOOKS);
+  });
+
+  const Book = () => {
+    let { id } = useParams();
+    return <Bookdeatil book={books.filter((book) => book.id == id)[0]} />;
+  }
+
+  const BookList = () => {
+    if (selLang.length > 0) {
+      return <Books books={books.filter((book) => selLang.includes(book.language))} />;
+    }
+    else {
+      return <Books books={books} />;
+    }
+  }
+
+  return (
+    <>
+      <Navbar langs={langs} onChange={onChange} />
+      <Suspense fallback={<div>Loading.....</div>}>
+        <Routes>
+          <Route path="/" element={<BookList/>} />
+          <Route exact path="/:id" element={<Book />} />
+          <Route exact path="/add" element={<AddBook add={addBook}/>}/>
+        </Routes>
+      </Suspense>
+    </>
+  )
 }
+
+
 
 export default Main;
 

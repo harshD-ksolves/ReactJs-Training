@@ -3,11 +3,15 @@ import { Link, useLocation } from "react-router-dom";
 
 
 
-const LangFilter = ({ language, handleChange }) => {
+const LangFilter = ({ language, handleChange, langFilter }) => {
 
     return (
-        <li>
-            <input className="form-check-input m-1" type="checkbox" value={language} id="flexCheckDefault" onChange={() => handleChange(language)} />
+        <li>{
+            langFilter.includes(language) 
+            ? <input className="form-check-input m-1" checked type="checkbox" value={language} id="flexCheckDefault" onChange={() => handleChange(language)} /> 
+            : <input className="form-check-input m-1" type="checkbox" value={language} id="flexCheckDefault" onChange={() => handleChange(language)} />
+        }
+
             <label className="form-check-label" htmlFor="flexCheckDefault">
                 {language}
             </label>
@@ -36,7 +40,7 @@ const Navbar = (props) => {
                                 </button>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
                                     {
-                                        props.langs.map((lang) => <LangFilter language={lang} handleChange={props.onChange} key={lang} />)
+                                        props.langs.map((lang) => <LangFilter language={lang} handleChange={props.handleChange} key={lang} langFilter={props.langFilter} />)
                                     }
                                 </ul>
                             </div>

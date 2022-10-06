@@ -33,6 +33,9 @@ const Bookdeatil = ({ book }) => {
                                 <p className="card-text">
                                     <strong>Average Rating</strong>: {book.avg_rating}
                                 </p>
+                                <p className="card-text">
+                                    <strong>Language</strong>: {book.language}
+                                </p>
                                 <p className="card-text ">
                                     <strong>Price</strong>: <span className="fs-3">${book.price}</span>
                                 </p>

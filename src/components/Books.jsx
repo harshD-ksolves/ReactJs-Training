@@ -21,8 +21,6 @@ const Book=({book})=>{
 
 const Books = (props) => {
 
-    
-
     return (
         <div className="container m-3 p-3">
             <div className="row">

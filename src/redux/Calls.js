@@ -4,7 +4,8 @@
     getBooksFailed,
     addBookStart,
     addBookSuccess,
-    addBookFailed
+    addBookFailed,
+    getBooks
  } from "./booksSlice";
 
  import {
@@ -13,12 +14,7 @@
 
  export const getAllBooks = (dispatch) => {
     
-    dispatch(getBookStart());
-    try {
-        dispatch(getBooksSuccess(BOOKS));
-    } catch (error) {
-        dispatch(getBooksFailed());
-    }
+    dispatch(getBooks());//dispatched getBooks asyncThunk Action.
         
  }
 

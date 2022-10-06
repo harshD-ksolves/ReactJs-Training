@@ -1,6 +1,24 @@
 import {
-    createSlice
+    createSlice,
+    createAsyncThunk
 } from "@reduxjs/toolkit";
+
+import axios from "axios";
+
+
+
+const booksUrl="http://demo5287985.mockable.io/books";
+
+
+export const getBooks=createAsyncThunk('books/getBooks',async ()=>{
+    try {
+        const res= await axios.get(booksUrl);
+        return res;
+    } catch (error) {
+        return error.message;
+    }
+});
+
 
 const booksSlice = createSlice({
     name: "Books",
@@ -45,6 +63,26 @@ const booksSlice = createSlice({
             state.isLoading = false;
         },
 
+    },
+    //Thunk Reducer.
+    extraReducers(builder){
+        builder
+        .addCase(getBooks.pending,(state,action)=>{
+            state.isLoading = true;
+            state.error = false;
+        })
+        .addCase(getBooks.fulfilled,(state,action)=>{
+            state.isLoading = false;
+            state.error = false;
+            
+            console.log(action.payload);
+
+            state.books =action.payload.data;
+        })
+        .addCase(getBooks.rejected,(state,action)=>{
+            state.isLoading = false;
+            state.error = true;
+        });
     }
 });
 

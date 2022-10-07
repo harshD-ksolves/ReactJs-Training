@@ -1,29 +1,13 @@
  import {
-    getBookStart,
-    getBooksSuccess,
-    getBooksFailed,
     addBookStart,
-    addBookSuccess,
-    addBookFailed,
-    getBooks
+    getBooksStart
  } from "./booksSlice";
 
- import {
-     BOOKS
- } from '../data';
 
  export const getAllBooks = (dispatch) => {
-    
-    dispatch(getBooks());//dispatched getBooks asyncThunk Action.
-        
+    dispatch(getBooksStart());//dispatched getBooks  Action.      
  }
 
  export const addNewBook = (book, dispatch) => {
-    dispatch(addBookStart());
-    
-    try {
-        dispatch(addBookSuccess(book));
-    } catch (error) {
-        dispatch(addBookFailed());
-    }
+   dispatch(addBookStart(book));
  }

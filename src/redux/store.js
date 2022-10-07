@@ -10,9 +10,13 @@ import {
     PERSIST,
     PURGE,
     REGISTER,
-  } from 'redux-persist'
-  import storage from 'redux-persist/lib/storage';
+  } from 'redux-persist';
 
+import storage from 'redux-persist/lib/storage';
+import createSagaMiddleware from 'redux-saga';
+import { watcherSaga } from './sagas/rootSaga';
+
+  const sagaMiddleware = createSagaMiddleware();
 
   const persistConfig = {
     key: 'root',
@@ -28,10 +32,11 @@ export const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
+      thunk:false,
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(sagaMiddleware),
 });
-
+sagaMiddleware.run(watcherSaga);
 export const persistor=persistStore(store);

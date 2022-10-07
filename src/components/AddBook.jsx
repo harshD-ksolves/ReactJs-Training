@@ -25,12 +25,14 @@ const AddBook = ({add}) => {
 
     const [inputs, setInputs] = useState(initialState);
     const [lang,setlangs]=useState([]);
-    const [success,setSuccess]=useState(books.success);
-    const [error,setError]=useState(books.error);
+    const [success,setSuccess]=useState(false);
+    const [error,setError]=useState(false);
 
     useEffect(()=>{
         setlangs(langs);
-    },[langs]);
+        setError(books.error);
+        setSuccess(books.success);
+    },[setlangs,setError,books]);
 
     const handleChange = (e) => {
         setInputs((prev) => {

@@ -33,7 +33,7 @@ const Navbar = (props) => {
                 <div className="container-fluid ">
                     <Link to="/" className="navbar-brand text-white">Home</Link>
                     <div className="d-flex p-3" role="search">
-                        {path == "/" &&
+                        {path === "/" &&
                             <div className="dropdown me-4">
                                 <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                                     Select Book Language

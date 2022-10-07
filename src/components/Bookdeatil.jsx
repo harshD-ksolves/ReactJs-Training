@@ -1,13 +1,11 @@
 import React from 'react'
 import './Bookdetail.css';
-import { useNavigate } from 'react-router-dom';
+
 
 
 
 const Bookdeatil = ({ book }) => {
-
-    let nav = useNavigate();
-
+    
     return (
         <div className="container BookConatiner m-4">
             <div className="row">
